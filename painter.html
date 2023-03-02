@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
     <title>painter</title>
-    <h1>painter entry Vinaychary Nangunoori</h1>
+
 <body>
+    <h1>painter entry Vinaychary Nangunoori</h1>
 <h2>Getting input</h2>
 
 <form>
+    <div class="mb-3 mt-3">
     <label for="painter">The hidden painter name</label>
-    <input type ="password" id="painter" name="painter" value=monet><br>
-
+    <input type ="password" id="painter" name="painter" value=monet></div>
+    <br>
+    <div class="mb-3 mt-3">
     <label for="Guess">Guess the painter</label>
-    <input type ="text" id="Guess" name="Guess" autofocus> <br>
-
+    <input type ="text" id="Guess" name="Guess" autofocus></div>
+     <br>
     <input type="button" onclick="checkpainter()" value="check the Guess">
 </form>
 <p id="result">This text will be replaced </p>
 <script> 
 var good=0;
 var oops=0;
+var count =0;
 function checkpainter (){
     console.log("Getting form value")
     hidden= document.getElementById("painter").value
@@ -26,15 +30,25 @@ function checkpainter (){
     if(hidden==guess){
         good=good+1;
         alert("you got it right");
-        out.innerHTML=good
+        result.innerHTML="count no : "+ good
     } 
+    else{
+        count+=1;
+        if(count>10){
+            document.getElementById("btn").onclick=display()
+        }
     else
     {
      oops=oops+1;
      alert("sorry");
-     out.innerHTML =oops
+     result.innerHTML ="count no : "+ oops
     }
-}
+}}
+
+function display()
+    {
+        alert("Sorry, ran out of guesses")
+    }
 </script>
 <div class="container">
      <img src="Narcissus.jpg" height="100" width="100" onclick="selectImage()" id="image">
