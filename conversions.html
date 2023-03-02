@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>CURRENCY CONVERSION </title>
+    <h2>shows currency conversions</h2>
+    </head>
+<body>
+<form>
+    <label for="form1">Enter base amount</label>
+    <input type ="number" id="form1" name="form1_Enter base amount" value=50> <br>
+
+    <label for="form2">Enter the conversion rate</label>
+    <input type ="number" id="form2" name="form2_Enter the conversion rate" value="35"> <br>
+
+    <input type="button" onclick="convert()" value="Show conversions">
+</form>
+
+<p id="result">Show conversions</p>
+
+<div class="container-fluid">
+    <form>
+        <input type="radio" class="radio" id="vc1" name="color" value="mean"   
+          checked onclick="chooseOp()" >
+        <label for="vc1">average</label></br>
+      
+        <input type="radio" class="radio" id="vc2" name="color" 
+           value="maximum" onclick="chooseOp()">
+        <label for="vc2">max</label></br>
+      
+        <input type="radio" class="radio" id="vc3" name="color"   
+           value="minimum" onclick="chooseOp()">
+        <label for="vc3">min</label></br>
+      </form>
+    </div>
+
+      <p id="results">This text will be replaced </p>
+      <script>
+
+function convert(){
+    console.log("Getting currency values")
+    value1 = document.getElementById("form1").value
+    value2 = document.getElementById("form2").value
+    var toShow = "";
+    var multiply = 1;
+    var temp=value1;
+    for(var i=0;i<5;i++)
+     {
+        let res=multiply*value2*value1;
+        res=Math.round(res * 10) / 10;
+        toShow+= " "+temp+" is "+res+";"
+        
+        multiply*=2;
+        temp*=2;
+     }    
+    document.getElementById("result").innerHTML="Conversion are :"+toShow    
+}
+
+function chooseOp(){
+   var value1 = parseFloat(document.getElementById("form1").value)
+   var value2 = parseFloat(document.getElementById("form2").value)
+    var temp="";
+    temp=document.getElementsByName("color")
+    var checkedValue = ""
+    for(i = 0; i < temp.length; i++){
+        if(temp[i].checked){
+            checkedValue = temp[i].value
+        }}   
+    switch(checkedValue){
+        case "minimum":
+            if(value1<value2){
+                document.getElementById("results").innerHTML="minimum of "+value1+ " and "+value2+" is "+value1;
+            }
+            else{
+                document.getElementById("results").innerHTML="minimum of "+value1+ " and "+value2+" is "+value2;
+            }break;           
+        case "maximum":
+            if(value1>value2){
+                document.getElementById("results").innerHTML="maximum of "+value1+ " and "+value2+" is "+value1;
+            }
+            else{
+                document.getElementById("results").innerHTML="maximum of "+value1+ " and "+value2+" is "+value2;
+            }break;           
+        case "mean":
+            document.getElementById("results").innerHTML="mean of "+value1+ " and "+value2+" is "+(value1+value2)/2;
+            break;
+    }
+    }
+    </script>
+</body>
+</html>
